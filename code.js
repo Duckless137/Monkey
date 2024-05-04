@@ -100,7 +100,8 @@ async function hehe(fileName) {
   const safeMode = label.checked;
   for (let i = 0; i < quantity; i++) {
     downloadElMono(fileName);
-    if (i % 10 == 0 && safeMode) {
+    if (i % 10 == 0 && safeMode & i > 0) {
+      console.log("Pause")
       await pause(1000);
     }
   }
