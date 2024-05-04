@@ -2,30 +2,44 @@ const monkeys = [
   {
     img: "assets/images/monkey_low.jpg",
     title: "Low quality monkey",
-    desc: "Good for downloading photos fast. Use if you want to download in bulk or if you lack time. A bit pixelated, but I don't think your friend will be focused on the actual photos anyway.",
+    desc: "Good for downloading photos fast. Use if you want to download in bulk or if you lack time. A bit pixelated, but I don't think your friend will be focused on the actual photos anyway. Great for spamming or annoyance when you're in a rush to mass download photos before you're caught.",
+    stats: {
+      Width: 100,
+      Height: 138,
+      Size: "11.65KB"
+    }
   },
   {
     img: "assets/images/monkey_med.png",
     title: "Medium quality monkey",
-    desc: "A middle ground. A happy medium. Faster download than High quality, but larger file size than low quality. A solid go-to option if you're indecisive.",
+    desc: "A middle ground. A happy medium. Faster download than High quality, but larger file size than low quality. A solid go-to option if you're indecisive. Great for when your victim is in deep conversation and you need just a bit of that extra punch that the small sizes can't offer.",
+    stats: {
+      Width: 300,
+      Height: 414,
+      Size: "159.63KB"
+    }
   },
   {
     img: "assets/images/monkey_high.png",
     title: "High quality monkey",
-    desc: "You want to slow down your friend's computer? Just download a few of these bad boys and next thing you know those fans will be in high gear. These larger-than-life monkeys are more than solid pranks, but be warned they can be friendship enders.",
+    desc: "You want to slow down your friend's computer? Just download a few of these bad boys and next thing you know those fans will be in high gear. Made with absolutely zero compression, these larger-than-life monkeys are more than solid pranks, but be warned they can be friendship enders.",
+    stats: {
+      Width: 2000,
+      Height: 2760,
+      Size: "15.83MB"
+    }
   },
 ];
 
 async function downloadElMono(fileName) {
   const anchor = document.createElement("a");
   anchor.setAttribute("href", fileName);
-  anchor.setAttribute("download", "mono.jpg");
+  anchor.setAttribute("download", "mono.png");
   document.body.appendChild(anchor);
   anchor.click();
   anchor.parentNode.removeChild(anchor);
 }
 
-const quantity = 10;
 class MonkeyButton {
   constructor(fileData) {
     const button = document.createElement("button");
@@ -45,8 +59,15 @@ class MonkeyButton {
     const info = document.createElement("div");
     info.className = "info-wrapper";
 
+    let stats = `<br><br>File Name: ${fileData.img.replace('assets/images/','')}<br>`;
+    const statKeys = Object.keys(fileData.stats);
+    for (const key of statKeys) {
+      const stat = fileData.stats[key];
+      stats += `${key}: ${stat}<br>`
+    }
+
     const desc = document.createElement("p");
-    desc.innerHTML = fileData.desc;
+    desc.innerHTML = fileData.desc + stats;
     desc.className = "monkey-ad";
 
     info.appendChild(image);
@@ -64,11 +85,7 @@ for (const file of monkeys) {
 }
 
 function hehe(fileName) {
-  const input = document.querySelector(".input");
-  if (input.value.length > Number(input.maxlength)) {
-    input.value = "9".repeat(input.maxlength);
-  }
-  const quantity = input.value;
+  const quantity = document.querySelector(".input").value;
 
   for (let i = 0; i < quantity; i++) {
     downloadElMono(fileName);
