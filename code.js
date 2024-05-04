@@ -101,7 +101,7 @@ async function hehe(fileName) {
   for (let i = 0; i < quantity; i++) {
     downloadElMono(fileName);
     if (i % 10 == 0 && safeMode) {
-      await pause(200);
+      await pause(1000);
     }
   }
 }
