@@ -138,11 +138,11 @@ window.onpointermove = event => {
 
 }
 
-async function downloadElMono() {
-    const anchor = document.createElement('a');
-    anchor.setAttribute('href','monkey.jpg');
-    anchor.setAttribute('download','mono.jpg');
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.parentNode.removeChild(anchor);
-}
+document.querySelector('.dramatic').animate({
+  translate: '0 0px'
+},
+{
+  duration: 5000,
+  easing: 'cubic-bezier(.06,.76,.18,.97)',
+  fill: 'forwards'
+})
