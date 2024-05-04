@@ -1,0 +1,140 @@
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(10, 10, 10);
+    overflow-x: hidden;
+}
+.dramatic {
+    color: white;
+    font-size: 70px;
+    margin: 20px;
+}
+.button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: fit-content;
+    padding-bottom: 100px;
+}
+
+.monkey-button {
+    width: 520px;
+    height: 400px;
+    margin: 20px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    scale: 1;
+    background-color: rgb(32, 32, 32);
+    transition: .5s all;
+}
+
+.monkey-button:hover {
+    scale: 1.1;
+}
+
+.monkey-title {
+    width: 100%;
+    height: fit-content;
+    font-size: 30px;
+    margin: 10px 0 10px 0;
+    color: white;
+}
+
+.info-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.monkey-image {
+    margin: 10px;
+    height: calc(100% - 20px);
+    aspect-ratio: 100/137;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+}
+
+.monkey-ad {
+    margin: 10px;
+    justify-self: flex-start;
+    margin-left: 0;
+    color: white;
+    text-align: left;
+    font-size: 16px;
+}
+
+.input {
+    margin: 20px;
+    width: 30%;
+    height: 30px;
+    background-color: rgb(40, 40, 40);
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-size: large;
+    padding: 10px;
+    padding-left: 20px;
+    outline: rgb(50, 50, 50) 3px solid;
+    box-shadow: none;
+    transition: .4s all cubic-bezier(.17,.67,.5,.92);
+}
+
+.input:focus {
+    box-shadow: 5px 5px 3px 3px rgb(32, 32, 32);
+}
+
+.hidden {
+    opacity: 0;
+    transition: all 1s;
+    filter: blur(5px);
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0px);
+}
+
+@keyframes rotate {
+    from {
+        rotate: 0deg;
+    }
+    50% {
+        scale: 1 1.5;
+    } to {
+        rotate: 360deg;
+    }
+}
+
+.blob {
+    z-index: -2;
+    background-color: white;
+    height: 500px;
+    aspect-ratio: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: linear-gradient(
+        to right,
+        aquamarine,
+        mediumpurple
+    );
+    animation: rotate 25s infinite;
+}
+
+.blur {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(200px);
+}
