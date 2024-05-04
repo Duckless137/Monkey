@@ -16,7 +16,7 @@ const monkeys = [
   },
 ];
 
-async function downloadElMono(fileName) {
+function downloadElMono(fileName) {
   const anchor = document.createElement("a");
   anchor.setAttribute("href", fileName);
   anchor.setAttribute("download", "mono.jpg");
