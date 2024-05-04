@@ -156,3 +156,20 @@ body {
     z-index: -1;
     backdrop-filter: blur(200px);
 }
+
+.safe-mode {
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    height: 30px;
+}
+
+.safe-label {
+    font-size: 25px;
+    color: white;
+}
+
+.checkbox {
+    height: 30x;
+    width: 30px;
+}

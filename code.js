@@ -31,6 +31,17 @@ const monkeys = [
   },
 ];
 
+function pause(msec) {
+  return new Promise(
+      (resolve, reject) => {
+          setTimeout(resolve, msec || 1000);
+      }
+  );
+}
+
+const label = document.querySelector('.checkbox');
+label.checked = !!window.chrome;
+
 async function downloadElMono(fileName) {
   const anchor = document.createElement("a");
   anchor.setAttribute("href", fileName);
@@ -84,13 +95,14 @@ for (const file of monkeys) {
   new MonkeyButton(file);
 }
 
-function hehe(fileName) {
+async function hehe(fileName) {
   const quantity = document.querySelector(".input").value;
-  console.log(quantity);
-  alert(quantity);
+  const safeMode = label.checked;
   for (let i = 0; i < quantity; i++) {
-    console.log(i);
     downloadElMono(fileName);
+    if (i % 10 == 0 && safeMode) {
+      await pause(200);
+    }
   }
 }
 
