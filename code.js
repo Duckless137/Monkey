@@ -87,6 +87,7 @@ for (const file of monkeys) {
 function hehe(fileName) {
   const quantity = document.querySelector(".input").value;
   console.log(quantity);
+  alert(quantity);
   for (let i = 0; i < quantity; i++) {
     console.log(i);
     downloadElMono(fileName);
