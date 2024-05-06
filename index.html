@@ -12,9 +12,13 @@
     <div class="blur"></div>
     <h1 class="dramatic">Monkeys. Reimagined.</h1>
     <input type="text" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="input" value="572">
-    <div class="safe-mode">
-        <input type="checkbox" class="checkbox" id="">
-        <label class="safe-label">Safe Mode</label>
+    <div class="safe-mode check-container">
+        <input type="checkbox" class="checkbox safe-check" id="">
+        <label class="safe-label label">Safe mode</label>
+    </div>
+    <div class="save-mode check-container">
+        <input type="checkbox" class="checkbox save-check" id="">
+        <label class="save-label label">Unique save names</label>
     </div>
     <div class="button-container"></div>
     <script src="code.js"></script>

@@ -5,6 +5,8 @@ body {
     flex-direction: column;
     background-color: rgb(10, 10, 10);
     overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
 }
 .dramatic {
     color: white;
@@ -18,6 +20,7 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-align: center;
 }
 
 .button-container {
@@ -31,8 +34,9 @@ body {
 
 .monkey-button {
     cursor: pointer;
-    width: 520px;
-    height: 420px;
+    width: 50%;
+    max-width: 520px;
+    aspect-ratio: 52/42;
     margin: 30px;
     border-radius: 25px;
     display: flex;
@@ -84,6 +88,9 @@ body {
     color: white;
     text-align: left;
     font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: scroll;
+    font-weight: 400;
 }
 
 .input {
@@ -157,14 +164,14 @@ body {
     backdrop-filter: blur(200px);
 }
 
-.safe-mode {
+.check-container {
     display: flex;
     flex-direction: row;
-    width: 200px;
+    width: fit-content;
     height: 30px;
 }
 
-.safe-label {
+.label {
     font-size: 25px;
     color: white;
 }

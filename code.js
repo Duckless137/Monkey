@@ -6,8 +6,8 @@ const monkeys = [
     stats: {
       Width: 100,
       Height: 138,
-      Size: "11.65KB"
-    }
+      Size: "11.65KB",
+    },
   },
   {
     img: "assets/images/monkey_med.png",
@@ -16,8 +16,8 @@ const monkeys = [
     stats: {
       Width: 300,
       Height: 414,
-      Size: "159.63KB"
-    }
+      Size: "159.63KB",
+    },
   },
   {
     img: "assets/images/monkey_high.png",
@@ -26,26 +26,26 @@ const monkeys = [
     stats: {
       Width: 2000,
       Height: 2760,
-      Size: "15.83MB"
-    }
+      Size: "15.83MB",
+    },
   },
 ];
 
 function pause(msec) {
-  return new Promise(
-      (resolve, reject) => {
-          setTimeout(resolve, msec || 1000);
-      }
-  );
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, msec || 1000);
+  });
 }
 
-const label = document.querySelector('.checkbox');
-label.checked = !!window.chrome;
+const isChromeium = !!window.chrome;
 
-async function downloadElMono(fileName) {
+const label = document.querySelector(".safe-check");
+label.checked = isChromeium;
+
+async function downloadElMono(fileName,download) {
   const anchor = document.createElement("a");
   anchor.setAttribute("href", fileName);
-  anchor.setAttribute("download", "mono.png");
+  anchor.setAttribute("download", download);
   document.body.appendChild(anchor);
   anchor.click();
   anchor.parentNode.removeChild(anchor);
@@ -70,11 +70,14 @@ class MonkeyButton {
     const info = document.createElement("div");
     info.className = "info-wrapper";
 
-    let stats = `<br><br>File Name: ${fileData.img.replace('assets/images/','')}<br>`;
+    let stats = `<br><br>File Name: ${fileData.img.replace(
+      "assets/images/",
+      ""
+    )}<br>`;
     const statKeys = Object.keys(fileData.stats);
     for (const key of statKeys) {
       const stat = fileData.stats[key];
-      stats += `${key}: ${stat}<br>`
+      stats += `${key}: ${stat}<br>`;
     }
 
     const desc = document.createElement("p");
@@ -98,11 +101,22 @@ for (const file of monkeys) {
 async function hehe(fileName) {
   const quantity = document.querySelector(".input").value;
   const safeMode = label.checked;
-  for (let i = 0; i < quantity; i++) {
-    downloadElMono(fileName);
-    if (i % 10 == 0 && safeMode & i > 0) {
-      console.log("Pause")
-      await pause(1000);
+  const saveMode = document.querySelector(".save-check").checked;
+  if (!saveMode) {
+    for (let i = 0; i < quantity; i++) {
+      downloadElMono(fileName, `mono.png`);
+      if (i % 10 == 0 && safeMode & (i > 0)) {
+        console.log("Pause");
+        await pause(1000);
+      }
+    }
+  } else {
+    for (let i = 0; i < quantity; i++) {
+      downloadElMono(fileName, `mono_${i}.png`);
+      if (i % 10 == 0 && safeMode & (i > 0)) {
+        console.log("Pause");
+        await pause(1000);
+      }
     }
   }
 }
@@ -129,52 +143,54 @@ function margin(element) {
 async function animateButtons() {
   const buttons = document.querySelectorAll(".monkey-button");
   buttons.forEach((el) => {
-		setInterval(function() {
+    setInterval(function () {
       document.body.scrollTop = 0;
-			const screenHeight = window.innerHeight / 2;
-    	const rect = el.getBoundingClientRect();
-    	const top = rect.top + rect.height / 2;
-    	const ratio = (top - screenHeight) / screenHeight;
-    	let shadow = (2 - Math.abs(ratio) * 5) * 10;
-			if (shadow < 0) {
-				shadow = 0;
-			}
-			el.animate(
-				{
-					boxShadow: `0 0 ${shadow}px ${shadow}px rgba(100,100,100,0.5)`
-				},
-				{
-					duration: 200,
-					fill: "forwards",
-				}
-			);
-		},10)
+      const screenHeight = window.innerHeight / 2;
+      const rect = el.getBoundingClientRect();
+      const top = rect.top + rect.height / 2;
+      const ratio = (top - screenHeight) / screenHeight;
+      let shadow = (2 - Math.abs(ratio) * 5) * 10;
+      if (shadow < 0) {
+        shadow = 0;
+      }
+      el.animate(
+        {
+          boxShadow: `0 0 ${shadow}px ${shadow}px rgba(100,100,100,0.5)`,
+        },
+        {
+          duration: 200,
+          fill: "forwards",
+        }
+      );
+    }, 1);
   });
-};
+}
 animateButtons();
 
-const blob = document.querySelector('.blob');
+const blob = document.querySelector(".blob");
 
-window.onpointermove = event => {
-	const { pageX, pageY } = event;
+window.onpointermove = (event) => {
+  const { pageX, pageY } = event;
 
-	blob.animate(
-		{
-			left: `${pageX}px`,
-			top: `${pageY}px`
-		},
-	{
-		duration: 3000,
-		fill: "forwards",
-	})
+  blob.animate(
+    {
+      left: `${pageX}px`,
+      top: `${pageY}px`,
+    },
+    {
+      duration: 3000,
+      fill: "forwards",
+    }
+  );
+};
 
-}
-
-document.querySelector('.dramatic').animate({
-  translate: '0 0px'
-},
-{
-  duration: 5000,
-  easing: 'cubic-bezier(.06,.76,.18,.97)',
-  fill: 'forwards'
-})
+document.querySelector(".dramatic").animate(
+  {
+    translate: "0 0px",
+  },
+  {
+    duration: 5000,
+    easing: "cubic-bezier(.06,.76,.18,.97)",
+    fill: "forwards",
+  }
+);
