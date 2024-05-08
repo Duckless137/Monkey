@@ -37,6 +37,8 @@ function pause(msec) {
   });
 }
 
+document.querySelector(".save-check").checked = true;
+
 const isChromeium = !!window.chrome;
 
 const label = document.querySelector(".safe-check");
